@@ -15,7 +15,8 @@ public class FoodDataMixin {
             method = "tick",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/entity/player/Player;heal(F)V")
+                    target = "Lnet/minecraft/world/entity/player/Player;heal(F)V"
+            )
     )
     private void osmiumlib$redirectHeal(Player player, float heal, Operation<Void> original) {
         PlayerNaturalHealingEvent event = NeoForge.EVENT_BUS.post(new PlayerNaturalHealingEvent(player, heal));
