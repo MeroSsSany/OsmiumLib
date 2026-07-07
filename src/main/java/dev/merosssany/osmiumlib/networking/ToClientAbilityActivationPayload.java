@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 public record ToClientAbilityActivationPayload(int abilityId) implements CustomPacketPayload {
     public static final Type<ToClientAbilityActivationPayload> TYPE = new Type<>(
-            ResourceLocation.fromNamespaceAndPath(OsmiumLib.MODID, "ability_activation")
+            ResourceLocation.fromNamespaceAndPath(OsmiumLib.MODID, "ability_activation_client")
     );
 
     public static final StreamCodec<FriendlyByteBuf, ToClientAbilityActivationPayload> STREAM_CODEC = StreamCodec.composite(

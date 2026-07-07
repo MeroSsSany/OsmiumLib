@@ -165,3 +165,19 @@ idea {
         downloadJavadoc = true
     }
 }
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+tasks.register('deobfJar', Jar) {
+    from sourceSets.main.output
+    archiveClassifier = 'deobf'
+}
+
+tasks.named('build') {
+    dependsOn tasks.named('deobfJar')
+    dependsOn tasks.named('sourcesJar')
+    dependsOn tasks.named('javadocJar')
+}

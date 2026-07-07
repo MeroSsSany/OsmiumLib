@@ -47,7 +47,7 @@ public class LivingEntityMixin {
             cancellable = true
     )
     public void osmiumlib$standOnLiquid(FluidState fluidState, CallbackInfoReturnable<Boolean> cir) {
-        LivingShouldStandOnFluidEvent event = NeoForge.EVENT_BUS.post(new LivingShouldStandOnFluidEvent((LivingEntity)(Object)this));
+        LivingShouldStandOnFluidEvent event = NeoForge.EVENT_BUS.post(new LivingShouldStandOnFluidEvent((LivingEntity)(Object)this, fluidState));
         if (event.isCanceled()) {
             cir.setReturnValue(event.isShouldStand());
         }
