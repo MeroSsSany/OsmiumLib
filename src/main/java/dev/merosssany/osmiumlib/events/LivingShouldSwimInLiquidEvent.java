@@ -14,7 +14,7 @@ public class LivingShouldSwimInLiquidEvent extends LivingEvent implements ICance
         this.fluidTYpe = fluidType;
     }
     
-    public FluidType getFluidTYpe() {
+    public FluidType getFluidType() {
         return fluidTYpe;
     }
     
