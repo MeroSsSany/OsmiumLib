@@ -93,7 +93,7 @@ public class LivingEntityMixin {
         LivingSwimSpeedEvent event = NeoForge.EVENT_BUS.post(new LivingSwimSpeedEvent.LavaPass(entity));
         
         if (event.isCanceled()) {
-            return event.isShouldSwimFaster();
+            return !event.isShouldSwimFaster();
         }
         
         return original.call(entity);
