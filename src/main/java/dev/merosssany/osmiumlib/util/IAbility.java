@@ -51,4 +51,8 @@ public interface IAbility {
     default boolean cancelIfAlreadyUsing(LivingEntity caster) {
         return false;
     }
+    
+    default void clientRemoved(LivingEntity entity) {}
+    
+    default void serverRemoved(LivingEntity entity) {}
 }

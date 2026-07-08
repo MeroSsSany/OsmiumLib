@@ -33,6 +33,7 @@ public record ToServerAbilityActivationPayload(int abilityId) implements CustomP
     public void exec(final IPayloadContext context) {
         context.enqueueWork(() -> {
             Player player = context.player();
+            OsmiumLib.LOGGER.info("Executing ability with id: {}, from player {}", abilityId, player.getGameProfile().getName());
             
             if (player.hasData(OsmiumAttachments.ENTITY_ABILITY_TYPES)) {
                 AbilityHolder holder = player.getData(OsmiumAttachments.ENTITY_ABILITY_TYPES);
@@ -43,7 +44,7 @@ public record ToServerAbilityActivationPayload(int abilityId) implements CustomP
                     return;
                 }
                 
-                if (holder.abilities().get(abilityId).cooldown() <= 0) return;
+                if (holder.abilities().get(abilityId).cooldown() > 0) return;
                 AbilityHelper.startUseAbility(player, abilityId);
             }
         });

@@ -32,6 +32,7 @@ public class OsmiumClientListener {
             AbilityHolder main = player.getData(OsmiumAttachments.ENTITY_ABILITY_TYPES.get());
             
             if (AbilityHelper.canUse(player, event.getAbilityId(), main)) {
+                OsmiumLib.LOGGER.info("Attempting to use {} id {} by player {}", event.getAbilityHolder(), event.getAbilityId(), player.getGameProfile().getName());
                 AbilityHelper.startUseAbility(player, event.getAbilityId());
                 PacketDistributor.sendToServer(new ToServerAbilityActivationPayload(event.getAbilityId()));
             }

@@ -16,9 +16,9 @@ public class OsmiumAttachments {
     public static final Supplier<AttachmentType<AbilityHolder>> ENTITY_ABILITY_TYPES = ATTACHMENT_TYPE.register(
             "ability_holder_type",
             () -> AttachmentType.builder(AbilityHolder::empty)
-                            .copyOnDeath()
                             .serialize(AbilityHolder.CODEC)
                             .sync(ByteBufCodecs.fromCodec(AbilityHolder.CODEC))
+                            .copyOnDeath()
                             .build()
     );
     

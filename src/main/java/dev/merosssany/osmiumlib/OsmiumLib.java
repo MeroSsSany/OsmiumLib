@@ -1,6 +1,7 @@
 package dev.merosssany.osmiumlib;
 
 import com.mojang.logging.LogUtils;
+import dev.merosssany.osmiumlib.attachments.OsmiumAttachments;
 import dev.merosssany.osmiumlib.networking.OsmiumNetworkingManager;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -16,6 +17,7 @@ public class OsmiumLib {
     public OsmiumLib(IEventBus bus) {
         bus.addListener(this::registerRegistries);
         OsmiumNetworkingManager.register(bus);
+        OsmiumAttachments.register(bus);
     }
     
     private void registerRegistries(NewRegistryEvent e) {

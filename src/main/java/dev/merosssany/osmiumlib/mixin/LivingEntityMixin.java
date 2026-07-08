@@ -74,6 +74,8 @@ public class LivingEntityMixin {
             )
     )
     public boolean osmiumlib$swimInLava(LivingEntity entity, Operation<Boolean> original) {
+        if (!entity.isInFluidType()) return original.call(entity);
+        
         LivingSwimSpeedEvent event = NeoForge.EVENT_BUS.post(new LivingSwimSpeedEvent.WaterPass(entity));
         if (event.isCanceled()) {
             return event.isShouldSwimFaster();
@@ -90,8 +92,9 @@ public class LivingEntityMixin {
             )
     )
     public boolean osmiumlib$speedupInLava(LivingEntity entity, Operation<Boolean> original) {
-        LivingSwimSpeedEvent event = NeoForge.EVENT_BUS.post(new LivingSwimSpeedEvent.LavaPass(entity));
+        if (!entity.isInFluidType()) return original.call(entity);
         
+        LivingSwimSpeedEvent event = NeoForge.EVENT_BUS.post(new LivingSwimSpeedEvent.LavaPass(entity));
         if (event.isCanceled()) {
             return !event.isShouldSwimFaster();
         }

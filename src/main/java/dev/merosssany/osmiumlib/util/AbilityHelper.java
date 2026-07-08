@@ -114,4 +114,23 @@ public class AbilityHelper {
         
         if (entity.level().isClientSide()) Objects.requireNonNull(OsmiumRegistries.getAbilityHolder().get(ability.abilityId())).firstServerApply(entity);
     }
+    
+    public static void removeAll(LivingEntity entity) {
+        if (entity.hasData(OsmiumAttachments.ENTITY_ABILITY_TYPES)) {
+            AbilityHolder holder = entity.getData(OsmiumAttachments.ENTITY_ABILITY_TYPES);
+            IAbilityHolder main = OsmiumRegistries.getAbilityHolder().get(holder.abilityId());
+            
+            for (IAbility ability : main.getAbilities()) {
+                if (entity.level().isClientSide()) {
+                    ability.clientEnded(entity);
+                    ability.clientRemoved(entity);
+                } else {
+                    ability.serverEnded(entity);
+                    ability.serverRemoved(entity);
+                }
+            }
+            
+            entity.removeData(OsmiumAttachments.ENTITY_ABILITY_TYPES);
+        }
+    }
 }
